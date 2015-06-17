@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BA95CDD-C541-422D-944D-51AFB227202E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sharper</RootNamespace>
+    <AssemblyName>Sharper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExecuteAround.cs" />
+    <Compile Include="Partially.cs" />
+    <Compile Include="Curry.cs" />
+    <Compile Include="SharperFunctionExtensions.cs" />
+    <Compile Include="SharperObjectExtensions.cs" />
+    <Compile Include="SharperEnumerableExtensions.cs" />
+    <Compile Include="SharperTupleExtensions.cs" />
+    <Compile Include="SharperIntegerExtensions.cs" />
+    <Compile Include="Option.cs" />
+    <Compile Include="None.cs" />
+    <Compile Include="Some.cs" />
+    <Compile Include="Either.cs" />
+    <Compile Include="Left.cs" />
+    <Compile Include="ExecuteAfter.cs" />
+    <Compile Include="OptionExtensions.cs" />
+    <Compile Include="IO.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="Match.cs" />
+    <Compile Include="MatchContext.cs" />
+    <Compile Include="MatchException.cs" />
+    <Compile Include="OptionIOT.cs" />
+    <Compile Include="OptionIOTExtensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
