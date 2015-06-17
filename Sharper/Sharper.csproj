@@ -56,6 +56,10 @@
     <Compile Include="OptionIOTExtensions.cs" />
     <Compile Include="IOExtensions.cs" />
     <Compile Include="EmptySeqException.cs" />
+    <Compile Include="EitherIOT.cs" />
+    <Compile Include="Right.cs" />
+    <Compile Include="EitherExtensions.cs" />
+    <Compile Include="EitherIOTExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

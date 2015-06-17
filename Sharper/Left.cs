@@ -31,38 +31,12 @@ namespace Sharper
             return other;
         }
 
-        private A error;
+        public override bool IsLeft{ get { return true; } }
+
+        public override bool IsRight{ get { return false; } }
+
+        internal A error;
     }
 
-    public class Right<A,B> : Either<A,B>
-    {
-
-        public Right(B value)
-        {
-            this.value = value;
-        }
-
-        public override Either<A,C> Map<C>(Func<B,C> f)
-        {
-            return new Right<A, C>(f(value));
-        }
-
-        public override Either<A,C> FlatMap<C>(Func<B,Either<A,C>> f)
-        {
-            return f(value);
-        }
-
-        public override B GetValueOrDefault(B value)
-        {
-            return this.value;
-        }
-
-        public override Either<A,B> OrElse(Either<A,B> other)
-        {
-            return this;
-        }
-
-        private B value;
-    }
 }
 

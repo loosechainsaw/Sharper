@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -13,6 +12,11 @@ namespace Sharper
         public abstract B GetValueOrDefault(B value);
 
         public abstract Either<A,B> OrElse(Either<A,B> other);
+
+        public abstract bool IsLeft{ get; }
+
+        public abstract bool IsRight{ get; }
     }
+
     
 }

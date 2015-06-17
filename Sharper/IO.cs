@@ -2,6 +2,7 @@
 
 namespace Sharper
 {
+
     public class IO<A>
     {
         public IO(Func<A> f)

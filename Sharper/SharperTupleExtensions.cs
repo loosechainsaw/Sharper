@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -11,5 +10,6 @@ namespace Sharper
         public static B Snd<_,B>(this Tuple<_,B> t) => t.Item2;
 
     }
-    
+
+
 }
