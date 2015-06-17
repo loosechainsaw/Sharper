@@ -54,6 +54,8 @@
     <Compile Include="MatchException.cs" />
     <Compile Include="OptionIOT.cs" />
     <Compile Include="OptionIOTExtensions.cs" />
+    <Compile Include="IOExtensions.cs" />
+    <Compile Include="EmptySeqException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
