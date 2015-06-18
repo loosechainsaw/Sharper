@@ -48,20 +48,25 @@
     <Compile Include="Either.cs" />
     <Compile Include="Left.cs" />
     <Compile Include="ExecuteAfter.cs" />
-    <Compile Include="OptionExtensions.cs" />
     <Compile Include="IO.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchContext.cs" />
     <Compile Include="MatchException.cs" />
-    <Compile Include="OptionIOT.cs" />
-    <Compile Include="OptionIOTExtensions.cs" />
-    <Compile Include="IOExtensions.cs" />
     <Compile Include="EmptySeqException.cs" />
-    <Compile Include="EitherIOT.cs" />
     <Compile Include="Right.cs" />
-    <Compile Include="EitherExtensions.cs" />
-    <Compile Include="EitherIOTExtensions.cs" />
+    <Compile Include="SharperNestedOptionExtensions.cs" />
+    <Compile Include="SharperEitherExtensions.cs" />
+    <Compile Include="SharperOptionExtensions.cs" />
+    <Compile Include="IOEither.cs" />
+    <Compile Include="IOOption.cs" />
+    <Compile Include="SharperIOEitherExtensions.cs" />
+    <Compile Include="SharperIOOptionExtensions.cs" />
+    <Compile Include="Reader.cs" />
+    <Compile Include="SharperReaderExtensions.cs" />
+    <Compile Include="IOReader.cs" />
+    <Compile Include="SharperIOReaderExtensions.cs" />
+    <Compile Include="SharperIOExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,21 +2,21 @@ using System;
 
 namespace Sharper
 {
-    public class EitherIOT<A,B>
+    public class IOEither<A,B>
     {
-        public EitherIOT(IO<Either<A,B>> o)
+        public IOEither(IO<Either<A,B>> o)
         {
             this.o = o;
         }
 
-        public EitherIOT<A,C> Map<C>(Func<B,C> f)
+        public IOEither<A,C> Map<C>(Func<B,C> f)
         {
-            return new EitherIOT<A, C>(new IO<Either<A, C>>(() => o.f().Map(f)));
+            return new IOEither<A, C>(new IO<Either<A, C>>(() => o.f().Map(f)));
         }
 
-        public EitherIOT<A,C> FlatMap<C>(Func<B,EitherIOT<A,C>> f)
+        public IOEither<A,C> FlatMap<C>(Func<B,IOEither<A,C>> f)
         {
-            return new EitherIOT<A, C>(new IO<Either<A, C>>(() => {
+            return new IOEither<A, C>(new IO<Either<A, C>>(() => {
                 var a = o.f();
                 var b = Match.Object(a)
                     .Case<Either<A,C>>(x => x.IsLeft, () => new Left<A,C>(a.ConvertToLeft().error))

@@ -3,7 +3,7 @@ using System;
 namespace Sharper
 {
 
-    public static class EitherExtensions
+    public static class SharperEitherExtensions
     {
 
         public static Left<A,C> ConvertToLeft<A,C>(this Either<A,C> o)

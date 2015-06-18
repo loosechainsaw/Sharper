@@ -3,7 +3,7 @@ using System;
 namespace Sharper
 {
 
-    public static class OptionExtensions
+    public static class SharperOptionExtensions
     {
         public static Option<A> ToOption<A>(this A value)
         {
@@ -22,9 +22,9 @@ namespace Sharper
             return o.FlatMap(z => f(z).Map(b => m(z, b)));
         }
 
-        public static OptionIOT<A> ToOptionIOT<A>(this Option<A> o)
+        public static IOOption<A> ToOptionIOT<A>(this Option<A> o)
         {
-            return new OptionIOT<A>(new IO<Option<A>>(() => o));
+            return new IOOption<A>(new IO<Option<A>>(() => o));
         }
 
         public static Some<A> ConvertToSome<A>(this Option<A> o)

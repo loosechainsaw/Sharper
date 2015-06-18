@@ -3,9 +3,9 @@ using System;
 namespace Sharper
 {
 
-    public class OptionIOT<A>
+    public class IOOption<A>
     {
-        public OptionIOT(IO<Option<A>> o)
+        public IOOption(IO<Option<A>> o)
         {
             this.o = o;
         }
@@ -15,14 +15,14 @@ namespace Sharper
             return o.f();
         }
 
-        public OptionIOT<B> Map<B>(Func<A,B> m)
+        public IOOption<B> Map<B>(Func<A,B> m)
         {
-            return new OptionIOT<B>(o.Map(z => z.Map(m)));
+            return new IOOption<B>(o.Map(z => z.Map(m)));
         }
 
-        public OptionIOT<B> FlatMap<B>(Func<A,OptionIOT<B>> m)
+        public IOOption<B> FlatMap<B>(Func<A,IOOption<B>> m)
         {
-            return new OptionIOT<B>(
+            return new IOOption<B>(
                 new IO<Option<B>>(() => {
                     var option = o.f();
 

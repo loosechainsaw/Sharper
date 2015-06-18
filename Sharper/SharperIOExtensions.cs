@@ -5,7 +5,7 @@ using System.Linq;
 namespace Sharper
 {
 
-    public static class IOExtensions
+    public static class SharperIOExtensions
     {
         public static IO<A> ToIO<A>(this A value)
         {

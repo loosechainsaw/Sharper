@@ -37,4 +37,5 @@ namespace Sharper
 
         internal B value;
     }
+
 }
