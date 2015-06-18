@@ -14,5 +14,10 @@ namespace Sharper
         {
             return new IOEither<A,B>(n);
         }
+
+        public static EitherOption<A,B> OptionT<A,B>(this Either<A,Option<B>> n)
+        {
+            return new EitherOption<A, B>(n);
+        }
     }
 }

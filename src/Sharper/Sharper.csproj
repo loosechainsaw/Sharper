@@ -67,6 +67,7 @@
     <Compile Include="IOReader.cs" />
     <Compile Include="SharperIOReaderExtensions.cs" />
     <Compile Include="SharperIOExtensions.cs" />
+    <Compile Include="EitherOption.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

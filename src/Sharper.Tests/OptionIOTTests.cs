@@ -28,6 +28,21 @@ namespace Sharper.Tests
                 .GetValueOrDefault(0);
             Assert.AreEqual(6, t);
         }
+
+        public IO<Option<int>> GetValue()
+        {
+            return 5.ToOption().ToIO();
+        }
+
+        [Test]
+        public void Mapping_over_it_with_comprehension_syntax_after_lifting_it_into_a_transformer()
+        {
+            var t = (from z in GetValue().OptionT()
+                              select z + 1);
+            var u = t.PerformUnsafeIO();
+            var v = u.GetValueOrDefault(0);
+            Assert.AreEqual(6, v);
+        }
     }
 
 }
