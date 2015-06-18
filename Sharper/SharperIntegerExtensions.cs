@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -20,11 +19,20 @@ namespace Sharper
             }
         }
 
-        public static Int32 Negate(this Int32 value) => value * (-1);
+        public static Int32 Negate(this Int32 value)
+        {
+            return value * (-1);
+        }
 
-        public static Boolean IsEven(this Int32 value) => value % 2 == 0;
+        public static Boolean IsEven(this Int32 value)
+        {
+            return value % 2 == 0;
+        }
 
-        public static Boolean IsOdd(this Int32 value) => !IsEven(value);
+        public static Boolean IsOdd(this Int32 value)
+        {
+            return !IsEven(value);
+        }
     }
     
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -14,6 +13,11 @@ namespace Sharper
         public static Func<A, Func<B,Func<C,D>>> Function<A,B,C,D>(Func<A,B,C,D> f)
         {
             return a => b => c => f(a, b, c);
+        }
+
+        public static Func<A, Func<B, Func<C, Func<D,E>>>> Function<A, B, C, D,E>(Func<A, B, C, D,E> f)
+        {
+            return a => b => c => d => f(a, b, c, d);
         }
 
         public static Func<A, Func<B,C>> Function<A,B,C>(Func<Tuple<A,B>,C> f)

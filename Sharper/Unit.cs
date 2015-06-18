@@ -1,5 +1,3 @@
-using System;
-
 namespace Sharper
 {
 
@@ -11,5 +9,4 @@ namespace Sharper
 
         public static readonly Unit Instance = new Unit();
     }
-    
 }

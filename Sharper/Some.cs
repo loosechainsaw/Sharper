@@ -11,15 +11,30 @@ namespace Sharper
             this.value = value;
         }
 
-        public override Option<B> Map<B>(Func<A,B> f) => new Some<B>(f(value));
+        public override Option<B> Map<B>(Func<A, B> f)
+        {
+            return new Some<B>(f(value));
+        }
 
-        public override Option<B> FlatMap<B>(Func<A,Option<B>> f) => f(value);
+        public override Option<B> FlatMap<B>(Func<A, Option<B>> f)
+        {
+            return f(value);
+        }
 
-        public override A GetValueOrDefault(A _) => value;
+        public override A GetValueOrDefault(A _)
+        {
+            return value;
+        }
 
-        public override Option<A> OrElse(Option<A> other) => other;
+        public override Option<A> OrElse(Option<A> other)
+        {
+            return this;
+        }
 
-        public override Option<A> Filter(Func<A, bool> predicate) => predicate(value) ? (Option<A>)this : new None<A>();
+        public override Option<A> Filter(Func<A, bool> predicate)
+        {
+            return predicate(value) ? (Option<A>)this : new None<A>();
+        } 
 
         public override bool Equals(object obj)
         {
@@ -28,8 +43,13 @@ namespace Sharper
             if(other == null)
                 return false;
 
-            return Object.Equals(other.value, value);
+            return Equals(other.value, value);
 
+        }
+
+        public override int GetHashCode()
+        {
+            return value.GetHashCode();
         }
 
         public override bool IsNone {
