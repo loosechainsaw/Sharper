@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -11,15 +10,15 @@ namespace Sharper
         {
             pre();
 
-            this.post = post;
+            _post = post;
         }
 
         public void Dispose()
         {
-            post();
+            _post();
         }
 
-        private readonly Action post;
+        private readonly Action _post;
     }
 
     

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,9 +34,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurryTests.cs" />
+    <Compile Include="ExecuteAfterTest.cs" />
+    <Compile Include="ExecuteAroundTest.cs" />
     <Compile Include="OptionTests.cs" />
     <Compile Include="EitherTests.cs" />
     <Compile Include="OptionIOTTests.cs" />
+    <Compile Include="PartialApTests.cs" />
+    <Compile Include="TupleTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

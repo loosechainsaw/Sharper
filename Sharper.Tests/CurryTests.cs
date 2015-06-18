@@ -41,6 +41,17 @@ namespace Sharper.Tests
 
         }
 
+        [Test]
+        public void Testing5ParamFunction()
+        {
+            Func<int, int, int, int, int, int> f = (a, b, c, d, e) => a + b + c + d + e;
+
+            var g = Curry.Function(f);
+
+            Assert.AreEqual(35, g(5)(6)(7)(8)(9));
+
+        }
+
 
     }
 }

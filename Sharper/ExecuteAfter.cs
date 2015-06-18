@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Sharper
 {
@@ -9,15 +8,15 @@ namespace Sharper
 
         public ExecuteAfter(Action action)
         {
-            this.f = action;
+            _f = action;
         }
 
         public void Dispose()
         {
-            f();
+            _f();
         }
 
-        private readonly Action f;
+        private readonly Action _f;
     }
-    
+
 }
