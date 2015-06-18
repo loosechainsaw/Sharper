@@ -37,6 +37,7 @@
     <Compile Include="CurryTests.cs" />
     <Compile Include="ExecuteAfterTest.cs" />
     <Compile Include="ExecuteAroundTest.cs" />
+    <Compile Include="FunctionExtensionTests.cs" />
     <Compile Include="IntegerExtensionTests.cs" />
     <Compile Include="ObjectExtensionTests.cs" />
     <Compile Include="OptionTests.cs" />

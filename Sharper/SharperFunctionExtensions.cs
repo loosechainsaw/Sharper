@@ -14,7 +14,7 @@ namespace Sharper
 
         public static Func<A, B, A> Const<A, B>(this Func<A, B, A> f)
         {
-            return  (a,b) => a;
+            return (a, b) => a;
         }
 
         public static Func<A, B> Identity<A, B>(this Func<A, B> f)
@@ -50,23 +50,24 @@ namespace Sharper
         public static Func<A, Func<B, Func<C, D>>> Curry<A, B, C, D>(this Func<A, B, C, D> f)
         {
             return Sharper.Curry.Function(f);
-        } 
+        }
 
         public static Func<A, Func<B, C>> Curry<A, B, C>(this Func<Tuple<A, B>, C> f)
         {
-            return Sharper.Curry.Function(f);   
-        } 
+            return Sharper.Curry.Function(f);
+        }
 
-        public static IEnumerable<A> Iterate<A>(this Func<A,A> f, A value)
+        public static IEnumerable<A> Iterate<A>(this Func<A, A> f, A value)
         {
             yield return value;
 
-            for(;;) {
+            for (; ; )
+            {
                 value = f(value);
                 yield return value;
             }
         }
 
     }
-    
+
 }
