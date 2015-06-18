@@ -8,8 +8,7 @@ namespace Sharper.Tests
     [TestFixture]
     public class OptionTests
     {
-
-        public class Person
+        private class Person
         {
 
             public Person(string surname, string middlename, string firstname)
@@ -25,7 +24,6 @@ namespace Sharper.Tests
 
             public String Surname{ get; private set; }
         }
-
 
         [Test]
         public void Mapping_an_option_with_a_value_should_produce_a_new_option_with_an_updated_value()
@@ -68,6 +66,62 @@ namespace Sharper.Tests
                             .GetValueOrDefault(human.Surname);
 
             Assert.AreEqual("Patrick Douglas Smith", result);
+        }
+
+        [Test]
+        public void TestingSomeIsSome()
+        {
+            Assert.IsTrue(new Some<Int32>(5).IsSome);
+        }
+
+        [Test]
+        public void TestingSomeIsNone()
+        {
+            Assert.IsFalse(new Some<Int32>(5).IsNone);
+        }
+
+        [Test]
+        public void OptionFilteringStartingWithSomeSuccess()
+        {
+            var a = new Some<int>(5);
+
+            Assert.AreEqual(5, a.Filter(x => x <= 5).GetValueOrDefault(0));
+
+        }
+
+        [Test]
+        public void OptionFilteringStartingWithSomeFail()
+        {
+            var a = new Some<int>(5);
+
+            Assert.AreEqual(0, a.Filter(x => x > 5).GetValueOrDefault(0));
+
+        }
+
+        [Test]
+        public void TestingNoneIsSome()
+        {
+            Assert.IsFalse(new None<Int32>().IsSome);
+        }
+
+        [Test]
+        public void TestingNoneIsNone()
+        {
+            Assert.IsTrue(new None<Int32>().IsNone);
+        }
+
+        [Test]
+        public void NoneOrElseReturnsOther()
+        {
+            Assert.AreEqual(5,new None<int>().OrElse(new Some<int>(5)).GetValueOrDefault(5));
+        }
+
+        [Test]
+        public void Mapping_over_none_does_nothing()
+        {
+            var d = 0;
+            Assert.AreEqual(5, new None<int>().Map(x => x.Succ()).GetValueOrDefault(5));
+            Assert.AreNotEqual(1, new None<int>().Map(x => x.Succ()).GetValueOrDefault(5));
         }
 
     }

@@ -7,14 +7,16 @@ namespace Sharper
     {
         public static Int32 Succ(this Int32 value)
         {
-            checked {
+            checked
+            {
                 return value + 1;
             }
         }
 
         public static Int32 Pred(this Int32 value)
         {
-            checked {
+            checked
+            {
                 return value - 1;
             }
         }
@@ -34,5 +36,5 @@ namespace Sharper
             return !IsEven(value);
         }
     }
-    
+
 }

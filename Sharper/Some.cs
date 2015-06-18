@@ -8,22 +8,22 @@ namespace Sharper
 
         public Some(A value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         public override Option<B> Map<B>(Func<A, B> f)
         {
-            return new Some<B>(f(value));
+            return new Some<B>(f(_value));
         }
 
         public override Option<B> FlatMap<B>(Func<A, Option<B>> f)
         {
-            return f(value);
+            return f(_value);
         }
 
         public override A GetValueOrDefault(A _)
         {
-            return value;
+            return _value;
         }
 
         public override Option<A> OrElse(Option<A> other)
@@ -33,7 +33,7 @@ namespace Sharper
 
         public override Option<A> Filter(Func<A, bool> predicate)
         {
-            return predicate(value) ? (Option<A>)this : new None<A>();
+            return predicate(_value) ? (Option<A>)this : new None<A>();
         } 
 
         public override bool Equals(object obj)
@@ -43,13 +43,13 @@ namespace Sharper
             if(other == null)
                 return false;
 
-            return Equals(other.value, value);
+            return Equals(other._value, _value);
 
         }
 
         public override int GetHashCode()
         {
-            return value.GetHashCode();
+            return _value.GetHashCode();
         }
 
         public override bool IsNone {
@@ -64,9 +64,9 @@ namespace Sharper
             }
         }
 
-        public A Value{ get { return value; } }
+        public A Value{ get { return _value; } }
 
-        private readonly A value;
+        private readonly A _value;
     }
     
 }
