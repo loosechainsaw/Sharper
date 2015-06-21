@@ -113,13 +113,12 @@ namespace Sharper.Tests
         [Test]
         public void NoneOrElseReturnsOther()
         {
-            Assert.AreEqual(5,new None<int>().OrElse(new Some<int>(5)).GetValueOrDefault(5));
+            Assert.AreEqual(5, new None<int>().OrElse(new Some<int>(5)).GetValueOrDefault(5));
         }
 
         [Test]
         public void Mapping_over_none_does_nothing()
         {
-            var d = 0;
             Assert.AreEqual(5, new None<int>().Map(x => x.Succ()).GetValueOrDefault(5));
             Assert.AreNotEqual(1, new None<int>().Map(x => x.Succ()).GetValueOrDefault(5));
         }

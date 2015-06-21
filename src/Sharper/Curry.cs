@@ -30,5 +30,5 @@ namespace Sharper
             return a => b => f(Tuple.Create(a, b));
         }
     }
-    
+
 }
