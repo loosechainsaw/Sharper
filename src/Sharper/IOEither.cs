@@ -4,31 +4,27 @@ namespace Sharper
 {
     public class IOEither<A,B>
     {
-        public IOEither(IO<Either<A,B>> o)
+        public IOEither(IO<Either<A,B>> monad)
         {
-            this.o = o;
+            this.monad = monad;
         }
 
         public IOEither<A,C> Map<C>(Func<B,C> f)
         {
-            return new IOEither<A, C>(new IO<Either<A, C>>(() => o.f().Map(f)));
+            return new IO<Either<A, C>>(() => monad.run().Map(f)).EitherT();
         }
 
         public IOEither<A,C> FlatMap<C>(Func<B,IOEither<A,C>> f)
         {
-            return new IOEither<A, C>(new IO<Either<A, C>>(() => {
-                var a = o.f();
-                var b = Match.Object(a)
-                    .Case<Either<A,C>>(x => x.IsLeft, () => new Left<A,C>(a.ConvertToLeft().error))
-                    .Case(x => x.IsRight, () => f(a.ConvertToRight().value).o.f())
-                    .Yield();
-
-                return b;
-
-            }));
+            return new IO<Either<A, C>>(() => 
+                Match.Object(monad.run())
+                     .Case<Either<A, C>>(x => x.IsLeft, _ => new Left<A, C>(_.ToLeft().error))
+                     .Case(x => x.IsRight, _ => f(_.ToRight().value).monad.run())
+                     .Yield())
+                    .EitherT();
         }
 
-        private IO<Either<A,B>> o;
+        private readonly IO<Either<A,B>> monad;
     }
 
 }

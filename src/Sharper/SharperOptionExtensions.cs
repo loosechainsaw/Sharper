@@ -22,16 +22,18 @@ namespace Sharper
             return o.FlatMap(z => f(z).Map(b => m(z, b)));
         }
 
-        public static IOOption<A> ToOptionIOT<A>(this Option<A> o)
+        public static IOOption<A> ToOptionIO<A>(this Option<A> o)
         {
             return new IOOption<A>(new IO<Option<A>>(() => o));
         }
 
-        public static Some<A> ConvertToSome<A>(this Option<A> o)
+        public static Some<A> ToSome<A>(this Option<A> o)
         {
             var s = o as Some<A>;
 
             return s;
         }
     }
+
+
 }

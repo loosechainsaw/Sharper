@@ -5,38 +5,38 @@ namespace Sharper
 
     public class IOOption<A>
     {
-        public IOOption(IO<Option<A>> o)
+        public IOOption(IO<Option<A>> monad)
         {
-            this.o = o;
+            this.monad = monad;
         }
 
         public Option<A> PerformUnsafeIO()
         {
-            return o.f();
+            return monad.run();
         }
 
-        public IOOption<B> Map<B>(Func<A,B> m)
+        public IOOption<B> Map<B>(Func<A,B> func)
         {
-            return new IOOption<B>(o.Map(z => z.Map(m)));
+            return monad.Map(z => z.Map(func)).OptionT();
         }
 
-        public IOOption<B> FlatMap<B>(Func<A,IOOption<B>> m)
+        public IOOption<B> FlatMap<B>(Func<A,IOOption<B>> func)
         {
             return new IOOption<B>(
                 new IO<Option<B>>(() => {
-                    var option = o.f();
+                    var option = monad.run();
 
                     return Match.Object(option)
-                                .Case(x => x.IsNone, () => new None<B>().ToOptionIOT())
-                                .Case(x => x.IsSome, () => m(option.ConvertToSome().Value))
+                                .Case(x => x.IsNone, () => new None<B>().ToOptionIO())
+                                .Case(x => x.IsSome, _ => func(_.ToSome().Value))
                                 .Yield()
-                                .o.f();
+                                .monad.run();
 
                 })
             );
         }
 
-        private IO<Option<A>> o;
+        private readonly IO<Option<A>> monad;
      
     }
 

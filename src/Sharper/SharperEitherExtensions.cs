@@ -6,14 +6,14 @@ namespace Sharper
     public static class SharperEitherExtensions
     {
 
-        public static Left<A,C> ConvertToLeft<A,C>(this Either<A,C> o)
+        public static Left<A,C> ToLeft<A,C>(this Either<A,C> o)
         {
             var s = o as Left<A,C>;
 
             return s;
         }
 
-        public static Right<A,C> ConvertToRight<A,C>(this Either<A,C> o)
+        public static Right<A,C> ToRight<A,C>(this Either<A,C> o)
         {
             var s = o as Right<A,C>;
 

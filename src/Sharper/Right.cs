@@ -31,6 +31,11 @@ namespace Sharper
             return this;
         }
 
+        public virtual B Value()
+        {
+            return value;
+        }
+
         public override bool IsLeft{ get { return false; } }
 
         public override bool IsRight{ get { return true; } }

@@ -11,7 +11,7 @@ namespace Sharper.Tests
         [Test]
         public void Mapping_over_it_should_return_a_new_value_if_it_contains_a_some()
         {
-            var s = 5.ToOption().ToOptionIOT();
+            var s = 5.ToOption().ToOptionIO();
             var t = s.Map(f => f + 1).PerformUnsafeIO();
             var z = t.GetValueOrDefault(0);
 
@@ -22,7 +22,7 @@ namespace Sharper.Tests
         public void Mapping_over_it_with_comphrension_syntax_should_return_a_new_value_if_it_contains_a_some()
         {
            
-            var t = (from a in 5.ToOption().ToOptionIOT()
+            var t = (from a in 5.ToOption().ToOptionIO()
                               select a + 1)
                 .PerformUnsafeIO()
                 .GetValueOrDefault(0);

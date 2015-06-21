@@ -18,7 +18,17 @@ namespace Sharper
             this.subject = subject;
         }
 
+        public MatchContext<A,B> Returning<B>()
+        {
+            return new MatchContext<A,B>(subject);
+        }
+
         public MatchContext<A,B> Case<B>(Func<A, bool> predicate, Func<B> f)
+        {
+            return new MatchContext<A, B>(subject, Tuple.Create(predicate, f));
+        }
+
+        public MatchContext<A,B> Case<B>(Func<A, bool> predicate, Func<A,B> f)
         {
             return new MatchContext<A, B>(subject, Tuple.Create(predicate, f));
         }

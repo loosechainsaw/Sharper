@@ -15,7 +15,7 @@ namespace Sharper
             return _n.Map(z => z.Map(f)).ReaderT();
         }
 
-        public IOReader<A,D> Map<C,D>(Func<B, IOReader<A,D>> f)
+        public IOReader<A,D> FlatMap<C,D>(Func<B, IOReader<A,D>> f)
         {
             return null;
         }

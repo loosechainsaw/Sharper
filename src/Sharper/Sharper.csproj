@@ -55,7 +55,6 @@
     <Compile Include="MatchException.cs" />
     <Compile Include="EmptySeqException.cs" />
     <Compile Include="Right.cs" />
-    <Compile Include="SharperNestedOptionExtensions.cs" />
     <Compile Include="SharperEitherExtensions.cs" />
     <Compile Include="SharperOptionExtensions.cs" />
     <Compile Include="IOEither.cs" />
@@ -68,6 +67,10 @@
     <Compile Include="SharperIOReaderExtensions.cs" />
     <Compile Include="SharperIOExtensions.cs" />
     <Compile Include="EitherOption.cs" />
+    <Compile Include="SharperTaskExtensions.cs" />
+    <Compile Include="TaskOption.cs" />
+    <Compile Include="TaskEither.cs" />
+    <Compile Include="SharperNestedMonadsExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
