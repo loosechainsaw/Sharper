@@ -20,5 +20,4 @@ namespace Sharper
             return o.FlatMap(z => f(z).Map(y => m(z, y)));
         }
     }
-
 }

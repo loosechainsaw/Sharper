@@ -44,6 +44,7 @@
     <Compile Include="EitherTests.cs" />
     <Compile Include="OptionIOTTests.cs" />
     <Compile Include="PartialApTests.cs" />
+    <Compile Include="PersistentListTests.cs" />
     <Compile Include="TupleTests.cs" />
     <Compile Include="MatchTests.cs" />
     <Compile Include="OptionIODemoTests.cs" />

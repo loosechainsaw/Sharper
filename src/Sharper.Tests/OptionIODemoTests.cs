@@ -89,7 +89,7 @@ namespace Sharper.Tests
 
         private Dictionary<int,Student> students{ get; set; }
 
-        private Dictionary<int,List<Score>> scores{ get; set; }
+        private Dictionary<int, List<Score>> scores { get; set; }
     }
 
     [TestFixture]
