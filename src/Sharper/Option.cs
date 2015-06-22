@@ -19,5 +19,5 @@ namespace Sharper
 
         public abstract bool IsNone{ get; }
     }
-
+       
 }

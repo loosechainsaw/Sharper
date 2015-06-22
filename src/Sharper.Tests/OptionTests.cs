@@ -123,6 +123,15 @@ namespace Sharper.Tests
             Assert.AreNotEqual(1, new None<int>().Map(x => x.Succ()).GetValueOrDefault(5));
         }
 
+        [Test]
+        public void Testing_Lifting_a_function()
+        {
+            Func<int,int> inc = x => x + 1;
+            var oinc = inc.Lift();
+
+            var o = 5.ToOption();
+            Assert.AreEqual(6, oinc(o).GetValueOrDefault(0));
+        }
     }
 }
 

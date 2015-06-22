@@ -74,6 +74,9 @@
     <Compile Include="TaskEither.cs" />
     <Compile Include="SharperNestedMonadsExtensions.cs" />
     <Compile Include="DictionaryExtensions.cs" />
+    <Compile Include="Try.cs" />
+    <Compile Include="Stream.cs" />
+    <Compile Include="TailRec.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

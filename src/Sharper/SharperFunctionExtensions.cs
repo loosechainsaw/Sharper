@@ -61,11 +61,15 @@ namespace Sharper
         {
             yield return value;
 
-            for (; ; )
-            {
+            for(; ;) {
                 value = f(value);
                 yield return value;
             }
+        }
+
+        public static Func<Option<A>, Option<B>> Lift<A,B>(this Func<A,B> f)
+        {
+            return x => x.Map(f);
         }
 
     }

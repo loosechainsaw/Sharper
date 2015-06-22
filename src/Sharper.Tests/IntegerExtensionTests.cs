@@ -10,7 +10,7 @@ namespace Sharper.Tests
         public void TestingSucc()
         {
             var a = 5;
-            Assert.AreEqual(6,a.Succ());
+            Assert.AreEqual(6, a.Succ());
         }
 
         [Test]
@@ -51,4 +51,5 @@ namespace Sharper.Tests
             Assert.False(4.IsOdd());
         }
     }
+
 }

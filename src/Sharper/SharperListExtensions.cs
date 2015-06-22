@@ -5,36 +5,74 @@ namespace Sharper
 {
     public static class SharperListExtensions
     {
+
+        public static PersistentList<A> Init<A>(this PersistentList<A> list)
+        {
+            var remainder = list;
+            PersistentList<A> result = new Nil<A>();
+
+            while(remainder.IsCons) {
+                var c = remainder.AsCons();
+
+                if(!c.Tail.IsCons) {
+                    break;
+                }
+
+                result = c.Head.Cons(result);
+                remainder = c.Tail;
+            }
+
+            return result;
+        }
+
+        public static PersistentList<B> Map<A,B>(this PersistentList<A> list, Func<A,B> func)
+        {
+            var remainder = list;
+            PersistentList<B> result = new Nil<B>();
+
+            while(remainder.IsCons) {
+                var c = remainder.AsCons();
+
+                result = func(c.Head).Cons(result);
+                remainder = c.Tail;
+            }
+
+            return result;
+        }
+
+        public static PersistentList<B> FlatMap<A,B>(this PersistentList<A> list, Func<A,PersistentList<B>> func)
+        {
+            var remainder = list;
+            PersistentList<B> result = new Nil<B>();
+
+            while(remainder.IsCons) {
+                var c = remainder.AsCons();
+
+                var z = func(c.Head);
+                var zremainder = z;
+
+                while(z.IsCons) {
+                    var d = zremainder.AsCons();
+                    result = d.Head.Cons(result);
+                    zremainder = d.Tail;
+                }
+
+                remainder = c.Tail;
+            }
+
+            return result;
+        }
+
         public static PersistentList<A> Cons<A>(this A value, PersistentList<A> tail)
         {
             return new Cons<A>(value, tail);
-        }
-
-        public static B FoldLeft<A, B>(this PersistentList<A> list, B zero, Func<B, A, B> f)
-        {
-
-            if (list.IsNil)
-                return zero;
-
-            PersistentList<A> l = list.AsCons();
-            var accum = zero;
-
-
-            while (l.IsCons)
-            {
-                accum = f(accum, l.AsCons().Head);
-                l = l.AsCons().Tail;
-            }
-
-            return accum;
-
         }
 
         public static PersistentList<A> Apply<A>(this IEnumerable<A> elements)
         {
             PersistentList<A> result = new Nil<A>();
 
-            foreach (var element in elements)
+            foreach(var element in elements)
                 result = element.Cons(result);
 
             return result;
@@ -42,15 +80,14 @@ namespace Sharper
 
         public static PersistentList<A> Take<A>(this PersistentList<A> list, int n)
         {
-            if (list.IsNil)
+            if(list.IsNil)
                 return new Nil<A>();
 
             PersistentList<A> result = new Nil<A>();
             var remainder = list;
 
-            for (var i = 0; i < n; ++i)
-            {
-                if (remainder.IsNil)
+            for(var i = 0; i < n; ++i) {
+                if(remainder.IsNil)
                     break;
 
                 var h = remainder.AsCons().Head;
@@ -65,14 +102,13 @@ namespace Sharper
 
         public static PersistentList<A> Drop<A>(this PersistentList<A> list, int n)
         {
-            if (list.IsNil)
+            if(list.IsNil)
                 return new Nil<A>();
 
             var remainder = list;
 
-            for (var i = 0; i < n; ++i)
-            {
-                if (remainder.IsNil)
+            for(var i = 0; i < n; ++i) {
+                if(remainder.IsNil)
                     break;
 
                 remainder = remainder.AsCons().Tail;
@@ -84,14 +120,13 @@ namespace Sharper
 
         public static PersistentList<A> Reverse<A>(this PersistentList<A> list)
         {
-            if (list.IsNil)
+            if(list.IsNil)
                 return new Nil<A>();
 
             PersistentList<A> result = new Nil<A>();
             var remainder = list;
 
-            while (remainder.IsCons)
-            {
+            while(remainder.IsCons) {
                 var c = remainder.AsCons();
                 result = c.Head.Cons(result);
                 remainder = c.Tail;
@@ -103,14 +138,13 @@ namespace Sharper
         public static PersistentList<A> Append<A>(this PersistentList<A> first, PersistentList<A> second)
         {
 
-            if (first.IsNil)
+            if(first.IsNil)
                 return second;
 
             PersistentList<A> result = new Nil<A>();
             var remainder = first;
 
-            while (remainder.IsCons)
-            {
+            while(remainder.IsCons) {
                 var h = remainder.AsCons().Head;
                 result = h.Cons(result);
 
@@ -119,8 +153,7 @@ namespace Sharper
 
             remainder = second;
 
-            while (remainder.IsCons)
-            {
+            while(remainder.IsCons) {
                 var h = remainder.AsCons().Head;
                 result = h.Cons(result);
 
@@ -135,13 +168,12 @@ namespace Sharper
 
         public static PersistentList<A> Foreach<A>(this PersistentList<A> list, Action<A> action)
         {
-            if (list.IsNil)
+            if(list.IsNil)
                 return new Nil<A>();
 
             var remainder = list;
 
-            while (remainder.IsCons)
-            {
+            while(remainder.IsCons) {
                 var c = remainder.AsCons();
                 action(c.Head);
                 remainder = c.Tail;
@@ -152,20 +184,36 @@ namespace Sharper
 
         public static int Count<A>(this PersistentList<A> list)
         {
-            if (list.IsNil)
+            if(list.IsNil)
                 return 0;
 
             var result = 0;
             var remainder = list;
 
-            while (remainder.IsCons)
-            {
+            while(remainder.IsCons) {
                 var c = remainder.AsCons();
                 ++result;
                 remainder = c.Tail;
             }
 
             return result;
+        }
+
+        public static B FoldLeft<A, B>(this PersistentList<A> list, B zero, Func<B, A, B> f)
+        {
+            if(list.IsNil)
+                return zero;
+
+            PersistentList<A> l = list.AsCons();
+            var accum = zero;
+
+            while(l.IsCons) {
+                accum = f(accum, l.AsCons().Head);
+                l = l.AsCons().Tail;
+            }
+
+            return accum;
+
         }
 
         public static Cons<A> AsCons<A>(this PersistentList<A> l)
